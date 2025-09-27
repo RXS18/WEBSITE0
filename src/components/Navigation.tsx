@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
               onClick={() => scrollToSection('websites')}
               className="text-lg font-medium transition-colors hover:text-gray-600"
             >
-              Site Web
+              Sites Web
             </button>
             <button 
               onClick={() => scrollToSection('visualizations')}
