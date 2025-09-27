@@ -5,38 +5,38 @@ const Posters: React.FC = () => {
     {
       title: "Smart Cargo",
       description: "Service de livraison international.",
-      image: "../img/KenBin0.png",
+      image: import.meta.env.BASE_URL + "/img/KenBin0.png",
       size: "large"
     },
     
     {
       title: "City Food",
       description: "Menu pour City food, restaurant.",
-      image: "../img/BenoitCityFood.png",
+      image: import.meta.env.BASE_URL + "/img/BenoitCityFood.png",
       size: "medium"
     },
     {
       title: "Plug Debt",
       description: "A modern clothing brand",
-      image: "../img/JoeAllan.png",
+      image: import.meta.env.BASE_URL + "/img/JoeAllan.png",
       size: "medium"
     },
     {
       title: "Flocon Doré",
       description: "La vente de pop corn",
-      image: "../img/KakwisiAnge.png",
+      image: import.meta.env.BASE_URL + "/img/KakwisiAnge.png",
       size: "large"
     },
     {
       title: "la journée mondiale des sols. CADASTRE AGRICOL DU NORK-KIVU",
       description: "Affiche simple informartive",
-      image: "../img/BeneditcBusole1.png",
+      image: import.meta.env.BASE_URL + "/img/BeneditcBusole1.png",
       size: "medium"
     },
     {
       title: "Monica's Delicacies",
       description: "A bakery",
-      image: "../img/MonicaTsongo.png",
+      image: import.meta.env.BASE_URL + "/img/MonicaTsongo.png",
       size: "small"
     }
   ];

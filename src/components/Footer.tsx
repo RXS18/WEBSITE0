@@ -10,13 +10,8 @@ const Footer: React.FC = () => {
             Créant des extraordinaires experiences visuels depuis 2020
           </p>
           <div className="border-t border-gray-800 pt-6">
-          <img 
-            src="../RXSlogo.svg"       // <-- replace with your actual logo path
-            alt="Logo"
-            className="h-6 w-10s object-contain"  // adjust size as you want
-          />
             <p className="text-gray-500 text-sm">
-              © 2025 RXS digital Lab. Tout droit reservé.
+              © 2025 RXS digital Lab.
             </p>
           </div>
         </div>

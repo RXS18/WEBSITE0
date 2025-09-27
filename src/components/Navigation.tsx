@@ -33,7 +33,7 @@ const Navigation: React.FC = () => {
           onClick={() => scrollToSection('hero')}
         >
           <img 
-            src="../RXSlogo.svg"       // <-- replace with your actual logo path
+            src= {import.meta.env.BASE_URL + "/RXSlogo.svg"}       // <-- replace with your actual logo path
             alt="Logo"
             className="h-6 w-10s object-contain"  // adjust size as you want
           />

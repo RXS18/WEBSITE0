@@ -7,4 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  base: '/WEBSITE0/', // 👈 this must match your GitHub repo name
 });
