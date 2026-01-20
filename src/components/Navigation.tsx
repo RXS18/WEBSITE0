@@ -44,7 +44,7 @@ const Navigation: React.FC = () => {
             
           </span>
           <span className="text-1xl font-bold">
-            Digital Lab
+            Digital Works
           </span>
           </div>
           

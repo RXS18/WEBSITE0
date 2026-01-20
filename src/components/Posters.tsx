@@ -8,11 +8,10 @@ const Posters: React.FC = () => {
       image: import.meta.env.BASE_URL + "/img/KenBin0.png",
       size: "large"
     },
-    
     {
       title: "City Food",
       description: "Menu pour City food, restaurant.",
-      image: import.meta.env.BASE_URL + "/img/BenoitCityFood.png",
+      image: import.meta.env.BASE_URL + "/img/BenoitCityFood0.png",
       size: "medium"
     },
     {
@@ -20,17 +19,23 @@ const Posters: React.FC = () => {
       description: "A modern clothing brand",
       image: import.meta.env.BASE_URL + "/img/JoeAllan.png",
       size: "medium"
-    },
+    },  
     {
-      title: "Flocon Doré",
-      description: "La vente de pop corn",
-      image: import.meta.env.BASE_URL + "/img/KakwisiAnge.png",
+      title: "Investitutre à L'ELBE 2025",
+      description: "Poster pour l'investiture de L'ELBE 2025",
+      image: import.meta.env.BASE_URL + "/img/MANIF.ELBE.A4png.png",
       size: "large"
     },
     {
-      title: "la journée mondiale des sols. CADASTRE AGRICOL DU NORK-KIVU",
-      description: "Affiche simple informartive",
-      image: import.meta.env.BASE_URL + "/img/BeneditcBusole1.png",
+      title: "Institure à MAMUS 2025",
+      description: "Poster pour l'investiture du nouveau gouvernement à Mama Mulezi S'econdaire 2025",
+      image: import.meta.env.BASE_URL + "/img/InvestitureMamus.png",
+      size: "large"
+    },
+    {
+      title: "L'Art de la musique",
+      description: "Maison de production d'artises musicaux",
+      image: import.meta.env.BASE_URL + "/img/LogoL'artDeLaMusiqueV0.4by5.exp.png.jpg",
       size: "medium"
     },
     {
@@ -38,7 +43,20 @@ const Posters: React.FC = () => {
       description: "A bakery",
       image: import.meta.env.BASE_URL + "/img/MonicaTsongo.png",
       size: "small"
+    },
+    {
+      title: "la journée mondiale des sols. CADASTRE AGRICOL DU NORK-KIVU",
+      description: "Affiche simple informartive",
+      image: import.meta.env.BASE_URL + "/img/BeneditcBusole1.png",
+      size: "large"
+    },
+    {
+      title: "Flocon Doré",
+      description: "La vente de pop corn",
+      image: import.meta.env.BASE_URL + "/img/KakwisiAnge.png",
+      size: "medium"
     }
+    
   ];
 
   return (

@@ -70,7 +70,7 @@ ${message}`;
                 </div>
               </div>
               
-              <div className="flex items-start space-x-4">
+              <div href="https://www.instagram.com/rxsdigitalworks/"className="flex items-start space-x-4">
                 <div className="bg-black rounded-full p-3">
                   <Instagram className="text-white" size={24} />
                 </div>
@@ -82,7 +82,7 @@ ${message}`;
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-black transition-colors"
                   >
-                    @rxsdigitallab
+                    @rxsdigitalworks
                   </a>
                 </div>
               </div>
@@ -94,7 +94,6 @@ ${message}`;
                 <div>
                   <p className="font-semibold text-lg">WhatsApp</p>
                   <a 
-                    href="https://wa.me/message/WFXOSXARUHJ5J1" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-black transition-colors"

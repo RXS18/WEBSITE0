@@ -5,7 +5,7 @@ const Websites: React.FC = () => {
   const packages = [
     {
       name: "Site Vitrine – Basique",
-      price: "50",
+      //price: "50",
       description: "Parfait pour débuter votre présence en ligne",
       features: [
         "Site simple (1–3 pages : accueil, à propos, contact)",
@@ -18,7 +18,7 @@ const Websites: React.FC = () => {
     },
     {
       name: "Pack Standard – Professionnel",
-      price: "200",
+      //price: "200",
       description: "Solution complète pour une présence professionnelle",
       features: [
         "Site complet (jusqu'à 6 pages : accueil, à propos, services, contact, blog, galerie…)",
@@ -33,7 +33,7 @@ const Websites: React.FC = () => {
     },
     {
       name: "Pack Premium – Sur Mesure",
-      price: "500",
+      //price: "500",
       description: "Solution avancée pour des besoins spécifiques",
       features: [
         "Site avancé (e-commerce, réservation en ligne, catalogue produit, espace client…)",
@@ -84,10 +84,10 @@ const Websites: React.FC = () => {
                     <IconComponent size={32} className="text-black" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4">{pkg.name}</h3>
-                  <div className="mb-4">
-                    <span className="text-5xl font-bold">{pkg.price}</span>
-                    <span className="text-xl text-gray-600">$</span>
-                  </div>
+                  {/*<div className="mb-4">*/}
+                  {/*  <span className="text-5xl font-bold">{pkg.price}</span>*/}
+                  {/*  <span className="text-xl text-gray-600">$</span>*/}
+                  {/*</div>*/}
                   <p className="text-gray-600 leading-relaxed">{pkg.description}</p>
                 </div>
 

@@ -12,13 +12,13 @@ const Visualizations: React.FC = () => {
       title: "Complexe résidentiel",
       description: "Des plus grand batiments pour accuellir plusieurs familles et ou individus",
       image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
-      category: "Residentiel"
+      category: "Appartements"
     },
     {
       title: "Batiment & complexes divers",
       description: "Et tout autre projet divers, usines, fermes, previualisez ce dont vous avez besoin.",
       image: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
-      category: "Residential"
+      category: "Projets Divers"
     },
     
   ];
