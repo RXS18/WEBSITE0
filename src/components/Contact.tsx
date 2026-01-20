@@ -77,7 +77,7 @@ ${message}`;
                 <div>
                   <p className="font-semibold text-lg">Instagram</p>
                   <a 
-                    href="https://www.instagram.com/rxsdigitallab/" 
+                    href="https://www.instagram.com/rxsdigitalworks/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-black transition-colors"
@@ -94,6 +94,7 @@ ${message}`;
                 <div>
                   <p className="font-semibold text-lg">WhatsApp</p>
                   <a 
+
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-black transition-colors"
