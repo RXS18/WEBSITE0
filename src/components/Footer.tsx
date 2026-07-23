@@ -7,11 +7,11 @@ const Footer: React.FC = () => {
         <div className="text-center">
           <h3 className="text-2xl font-bold mb-4">RXS Digital Lab</h3>
           <p className="text-gray-400 mb-6">
-            Créant des extraordinaires experiences visuels depuis 2020
+            Nous créons des expériences visuelles extraordinaires depuis 2020
           </p>
           <div className="border-t border-gray-800 pt-6">
             <p className="text-gray-500 text-sm">
-              © 2025 RXS digital Lab.
+              © {new Date().getFullYear()} RXS Digital Lab.
             </p>
           </div>
         </div>

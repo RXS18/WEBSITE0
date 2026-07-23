@@ -3,7 +3,7 @@ import { ArrowDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const scrollToNext = () => {
-    const element = document.getElementById('visualizations');
+    const element = document.getElementById('posters');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

@@ -1,12 +1,11 @@
-import React from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Websites from './components/Websites';
 import Visualizations from './components/Visualizations';
+import Renders from './components/Renders';
 import Posters from './components/Posters';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
 
 function App() {
   return (
@@ -16,6 +15,7 @@ function App() {
       <Posters />
       <Websites />
       <Visualizations />
+      <Renders />
       <Contact />
       <Footer />
     </div>

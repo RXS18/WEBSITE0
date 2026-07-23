@@ -70,7 +70,7 @@ ${message}`;
                 </div>
               </div>
               
-              <div href="https://www.instagram.com/rxsdigitalworks/"className="flex items-start space-x-4">
+              <div className="flex items-start space-x-4">
                 <div className="bg-black rounded-full p-3">
                   <Instagram className="text-white" size={24} />
                 </div>
@@ -93,9 +93,11 @@ ${message}`;
                 </div>
                 <div>
                   <p className="font-semibold text-lg">WhatsApp</p>
-                  <a 
-
-                    target="_blank" 
+                  <a
+                    href={`https://wa.me/243852825250?text=${encodeURIComponent(
+                      "Bonjour ! J'aimerais discuter d'un projet avec vous."
+                    )}`}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-black transition-colors"
                   >

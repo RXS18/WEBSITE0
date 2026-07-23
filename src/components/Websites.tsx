@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Globe, Smartphone, Search, Shield, Zap } from 'lucide-react';
+import { Check, Globe, Smartphone, Zap } from 'lucide-react';
 
 const Websites: React.FC = () => {
   const packages = [
@@ -102,13 +102,9 @@ const Websites: React.FC = () => {
                   ))}
                 </div>
 
-                <a 
+                <a
                   href={`https://wa.me/243852825250?text=${encodeURIComponent(
-                    pkg.name === "Site Vitrine – Basique" 
-                      ? "Bonjour ! Je suis intéressé(e) par le pack Site Vitrine - Basique à 50$. Pouvez-vous me donner plus d'informations ?"
-                      : pkg.name === "Pack Standard – Professionnel"
-                      ? "Bonjour ! Je suis intéressé(e) par le Pack Standard - Professionnel à 200$. Pouvez-vous me donner plus d'informations ?"
-                      : "Bonjour ! Je suis intéressé(e) par le Pack Premium - Sur Mesure à 500$. Pouvez-vous me donner plus d'informations ?"
+                    `Bonjour ! Je suis intéressé(e) par le ${pkg.name}. Pouvez-vous me donner plus d'informations et un devis ?`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

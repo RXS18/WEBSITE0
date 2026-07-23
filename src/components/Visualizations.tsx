@@ -3,24 +3,23 @@ import React from 'react';
 const Visualizations: React.FC = () => {
   const projects = [
     {
-      title: "Residence familiale",
-      description: "Nos médias en 3D permettent de visualliser vos maisons familiales avant qu'elles soient meme construites. Même les améoliroations que vous voulez visualiser sont possibles",
+      title: "Résidence familiale",
+      description: "Nos rendus 3D permettent de visualiser vos maisons familiales avant même qu'elles ne soient construites — y compris les améliorations que vous envisagez.",
       image: "https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg",
-      category: "Residentiel"
+      category: "Résidentiel"
     },
     {
       title: "Complexe résidentiel",
-      description: "Des plus grand batiments pour accuellir plusieurs familles et ou individus",
+      description: "De plus grands bâtiments, pensés pour accueillir plusieurs familles ou individus.",
       image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
       category: "Appartements"
     },
     {
-      title: "Batiment & complexes divers",
-      description: "Et tout autre projet divers, usines, fermes, previualisez ce dont vous avez besoin.",
+      title: "Bâtiments & complexes divers",
+      description: "Et tout autre type de projet — usines, fermes : prévisualisez ce dont vous avez besoin.",
       image: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
-      category: "Projets Divers"
-    },
-    
+      category: "Projets divers"
+    }
   ];
 
   return (
@@ -28,11 +27,12 @@ const Visualizations: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-            Visualization de projets
+            Visualisation de projets
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Chaque projet commence avec une idée, nous vous amenont à sa prochaine étape essentielle 
-            de la VISUALISATON permettant de plus concretiser vos investissements, batiments, produits, nous vous accompagnerons.
+            Chaque projet commence par une idée. Nous vous accompagnons vers l'étape essentielle
+            suivante — la visualisation — pour concrétiser vos investissements, vos bâtiments
+            et vos produits.
           </p>
         </div>
 
