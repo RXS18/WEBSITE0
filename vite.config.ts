@@ -7,5 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base: '/WEBSITE0/', // served from the project path on rxs18.github.io
+  base: '/', // served from the domain root on rxsdigital.com
 });
