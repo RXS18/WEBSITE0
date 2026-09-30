@@ -2,29 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+/* ---------- Design tokens (RGB triplets so Tailwind opacity works) ---------- */
+:root {
+  --surface: 255 255 255;
+  --alt: 245 245 247;
+  --card: 255 255 255;
+  --fg: 29 29 31;
+  --muted: 110 110 115;
+  --line: 0 0 0;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: 0 0 0;
+    --alt: 18 18 20;
+    --card: 28 28 30;
+    --fg: 245 245 247;
+    --muted: 152 152 157;
+    --line: 255 255 255;
   }
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background: rgb(var(--surface));
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    background: rgb(var(--surface));
+    color: rgb(var(--fg));
+    overflow-x: hidden;
+    transition: background-color 0.4s, color 0.4s;
+  }
+
+  section[id] { scroll-margin-top: 3.5rem; }
+
+  ::selection { background: rgb(var(--fg) / 0.15); }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--fg));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .section-title {
+    font-size: clamp(2.25rem, 9vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .section-sub {
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    letter-spacing: -0.011em;
+    color: rgb(var(--muted));
+  }
+  @media (min-width: 640px) { .section-sub { font-size: 1.25rem; } }
+  @media (min-width: 768px) { .section-sub { font-size: 1.5rem; } }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border-radius: 9999px;
+    padding: 0.95rem 1.75rem;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary { background: rgb(var(--fg)); color: rgb(var(--surface)); }
+  .btn-ghost { background: rgb(var(--fg) / 0.08); color: rgb(var(--fg)); }
+  .btn-light { background: #fff; color: #000; }
+  .btn-glass { background: rgb(255 255 255 / 0.16); color: #fff; backdrop-filter: blur(16px); }
+}
+
 @layer utilities {
-  .animate-fade-in-up {
-    animation: fadeInUp 1s ease-out;
+  /* Feedback on press: instant in, springy out */
+  .press {
+    transition: transform 380ms cubic-bezier(0.22, 1.25, 0.36, 1), background-color 200ms, opacity 200ms;
+    touch-action: manipulation;
   }
-  
+  .press:active {
+    transform: scale(0.96);
+    transition-duration: 80ms;
+  }
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .animate-fade-in-up { animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
+
+  .hairline { border-color: rgb(var(--line) / 0.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-fade-in-up, .animate-pop, .animate-ping1 { animation: none; }
+  .press, .press:active { transition: none; transform: none; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .backdrop-blur-xl { backdrop-filter: none; }
 }

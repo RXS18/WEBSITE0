@@ -1,96 +1,169 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { asset } from '../lib/asset';
+import { useI18n } from '../lib/i18n';
 
-const NAV_LINKS = [
-  { id: 'websites', label: 'Sites Web' },
-  { id: 'visualizations', label: 'Visualisations' },
-  { id: 'renders', label: 'Créations 3D' },
-  { id: 'posters', label: 'Affiches' },
-  { id: 'contact', label: 'Contact' }
-];
+const LangToggle: React.FC<{ className?: string; light?: boolean }> = ({ className = '', light }) => {
+  const { lang, setLang, t } = useI18n();
+  const on = 'font-semibold';
+  const off = light ? 'text-white/55' : 'text-muted';
+  return (
+    <button
+      type="button"
+      onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
+      aria-label={t.nav.switchLang}
+      className={`press rounded-full px-2.5 py-1.5 text-[0.8125rem] tracking-wide ${className}`}
+    >
+      <span className={lang === 'fr' ? on : off}>FR</span>
+      <span className={light ? 'text-white/30' : 'text-muted/50'}> / </span>
+      <span className={lang === 'en' ? on : off}>EN</span>
+    </button>
+  );
+};
 
 const Navigation: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [overHero, setOverHero] = useState(true);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const openRef = useRef(open);
+  useEffect(() => { openRef.current = open; }, [open]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    let lastY = window.scrollY;
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const hero = document.getElementById('hero');
+      const heroBottom = hero ? hero.offsetHeight - 72 : 0;
+      setOverHero(y < heroBottom);
+
+      const dy = y - lastY;
+      if (Math.abs(dy) > 6) {
+        setHidden(dy > 0 && y > 160 && !openRef.current);
+        lastY = y;
+      }
+      if (y < 160) setHidden(false);
+
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  const scrollToSection = (id: string) => {
+    setOpen(false);
+    requestAnimationFrame(() =>
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    );
   };
 
+  const light = overHero && !open; // white text over the dark hero
+  const glass = !overHero || open;
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4 lg:py-6">
-          <button
-            type="button"
-            className="flex items-center space-x-3 cursor-pointer transition-colors hover:text-gray-600"
-            onClick={() => scrollToSection('hero')}
-            aria-label="Retour en haut"
-          >
-            <img
-              src={asset('RXSlogo.svg')}
-              alt="RXS Digital Works"
-              className="h-6 w-auto object-contain"
-            />
-            <span className="text-lg font-bold">Digital Works</span>
-          </button>
+    <nav
+      className={`fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top)] transition-[transform,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        hidden ? '-translate-y-full' : 'translate-y-0'
+      } ${
+        glass
+          ? 'bg-surface/70 shadow-[0_1px_0_rgb(var(--line)/0.08)] backdrop-blur-xl backdrop-saturate-150'
+          : 'bg-transparent'
+      } ${light ? 'text-white' : 'text-fg'}`}
+    >
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5 sm:h-16 lg:px-8">
+        <button
+          type="button"
+          className="press flex items-center gap-2.5"
+          onClick={() => scrollToSection('hero')}
+          aria-label={t.nav.home}
+        >
+          <img
+            src={asset('RXSlogo.svg')}
+            alt="RXS Digital Works"
+            className={`h-[1.05rem] w-auto object-contain transition-[filter] duration-300 ${
+              light ? 'invert' : 'dark:invert'
+            }`}
+          />
+          <span className="text-[1.0625rem] font-semibold tracking-[-0.02em]">Digital Works</span>
+        </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 lg:space-x-10">
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className="text-lg font-medium transition-colors hover:text-gray-600"
-              >
-                {link.label}
-              </button>
-            ))}
-          </div>
+        <div className="hidden items-center gap-7 md:flex lg:gap-9">
+          {t.nav.links.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              className={`text-[0.9375rem] font-medium transition-opacity hover:opacity-100 ${
+                light ? 'opacity-85' : 'opacity-70'
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+          <LangToggle light={light} className={light ? 'bg-white/10' : 'bg-fg/5'} />
+        </div>
 
-          {/* Mobile Menu Button */}
+        <div className="flex items-center gap-1 md:hidden">
+          <LangToggle light={light} />
           <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            aria-expanded={isMobileMenuOpen}
+            className="press -mr-2 flex h-11 w-11 items-center justify-center"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={open}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t">
-          <div className="px-6 py-4 space-y-4">
-            {NAV_LINKS.map((link) => (
+      <div
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden ${
+          open ? 'grid-rows-[1fr] opacity-100' : 'pointer-events-none grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="flex h-[calc(100svh-3.5rem)] flex-col px-5 pt-4">
+            {t.nav.links.map((link, i) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="block text-lg font-medium transition-colors hover:text-gray-600"
+                style={{ transitionDelay: open ? `${80 + i * 45}ms` : '0ms' }}
+                className={`press hairline border-b py-5 text-left text-3xl font-semibold tracking-[-0.03em] text-fg transition-[opacity,transform] duration-500 ${
+                  open ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
+                }`}
               >
                 {link.label}
               </button>
             ))}
           </div>
         </div>
-      )}
+      </div>
+
+      {/* scroll progress */}
+      <div className="absolute inset-x-0 bottom-0 h-[2px]">
+        <div
+          ref={progressRef}
+          className={`h-full origin-left ${light ? 'bg-white/70' : 'bg-fg'}`}
+          style={{ transform: 'scaleX(0)' }}
+        />
+      </div>
     </nav>
   );
 };
